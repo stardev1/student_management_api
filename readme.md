@@ -3,10 +3,10 @@
 
 ## Installation
 1. Clone the repository:
-    `git clone https://github.com/stardev1/student-management-api.git`
+    `git clone https://github.com/stardev1/student_management_api.git`
 2. Install the requirements:
     1. Go to project directory: 
-        `cd student-management-api`
+        `cd student_management_api`
     2. Install poetry: 
         `pip install poetry`
     3. Install dependancy
