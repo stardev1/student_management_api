@@ -27,11 +27,11 @@ course_serializer = student_ns.model('Course', {
 })
 
 
-@student_ns.route('')
+@student_ns.route('/')
 class StudentList(Resource):
     @student_ns.doc('students')
-    @jwt_required()
     @student_ns.marshal_list_with(student_serializer)
+    @jwt_required()
     def get(self):
         """
          Get all students from database
@@ -39,9 +39,9 @@ class StudentList(Resource):
         students = Student.query.all()
         return students
 
-    @jwt_required()
     @student_ns.expect(student_serializer)
     @student_ns.marshal_with(student_serializer, code=201)
+    @jwt_required()
     def post(self):
         """  Create a new student """
         data = student_ns.payload
@@ -50,10 +50,10 @@ class StudentList(Resource):
         db.session.commit()
         return student, 201
 
-@student_ns.route('/<int:id>')
+@student_ns.route('/<int:id>/')
 class StudentDetail(Resource):
-    @jwt_required()
     @student_ns.marshal_with(student_serializer)
+    @jwt_required()
     def get(self, id):
         "Get a specific student by ID else return 404"
         student = Student.query.get_or_404(id)
@@ -88,8 +88,8 @@ class StudentDetail(Resource):
     
 @student_ns.route('/<int:student_id>/courses')
 class StudentCourseList(Resource):
-    @jwt_required()
     @student_ns.marshal_list_with(course_serializer)
+    @jwt_required()
     def get(self, student_id):
         """
         Get all courses for a specific student
@@ -100,8 +100,8 @@ class StudentCourseList(Resource):
     
 @student_ns.route('/<int:student_id>/grades')
 class StudentCourseList(Resource):
-    @jwt_required()
     @student_ns.marshal_list_with(enrollment_serializer)
+    @jwt_required()
     def get(self, student_id):
         """
         Get all  courses grade for a specific student

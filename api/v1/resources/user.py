@@ -2,7 +2,7 @@ from flask_restx import Resource, Namespace, fields
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.v1.models import User
-from api.v1 import db
+from db import db
 
 user_ns = Namespace('users', description='Users operations')
 user_serializer = user_ns.model('User', {
